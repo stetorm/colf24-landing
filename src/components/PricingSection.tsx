@@ -8,49 +8,47 @@ import { EmailCaptureModal } from "./EmailCaptureModal";
 const plans = [
   {
     name: "Base",
-    price: "Gratis",
-    description: "Perfetto per chi ha una sola colf o badante",
+    price: "€5",
+    description: "Per chi ha una sola colf o badante",
     features: [
-      "1 lavoratore domestico",
-      "Buste paga illimitate",
-      "Calcolo automatico contributi",
-      "Download PDF",
-      "Gestione ferie e TFR",
-      "Supporto email"
+      "1 datore, 1 collaboratore",
+      "Cedolini illimitati",
+      "Calcolo contributi INPS",
+      "Gestione TFR e tredicesima",
+      "Download PDF storico",
     ],
-    cta: "Inizia Gratis",
+    cta: "Inizia gratis",
     popular: false
   },
   {
-    name: "Pro",
-    price: "€9,90",
-    description: "Ideale per famiglie con più collaboratori",
+    name: "Plus",
+    price: "€10",
+    description: "Per famiglie con più collaboratori domestici",
     features: [
-      "Fino a 5 lavoratori",
+      "1 datore, fino a 3 collaboratori",
       "Tutto del piano Base",
-      "Bollettini INPS precompilati",
+      "Gestione ferie e malattie",
+      "Calcolo liquidazione",
       "Promemoria scadenze",
-      "Archivio storico completo",
-      "Supporto prioritario",
-      "Esportazione dati"
+      "Esportazione dati",
     ],
-    cta: "Prova 30 Giorni Gratis",
+    cta: "Inizia gratis",
     popular: true
   },
   {
-    name: "Commercialista",
-    price: "€29,90",
-    description: "Per professionisti che gestiscono più clienti",
+    name: "Pro",
+    price: "€30",
+    description: "Per commercialisti e professionisti del settore",
     features: [
-      "Lavoratori illimitati",
-      "Gestione multi-cliente",
-      "Dashboard completa",
-      "API di integrazione",
-      "White-label",
-      "Supporto dedicato",
-      "Formazione inclusa"
+      "Datori e collaboratori illimitati",
+      "Tutto del piano Plus",
+      "Multi-utenza",
+      "Elaborazione in batch",
+      "Report avanzati",
+      "Branding personalizzato",
+      "Integrazioni e supporto dedicato",
     ],
-    cta: "Contatta il Team",
+    cta: "Contattaci",
     popular: false
   }
 ];
@@ -66,7 +64,7 @@ export function PricingSection() {
             Prezzi trasparenti e convenienti
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Scegli il piano più adatto alle tue esigenze. Inizia gratuitamente e passa a un piano superiore quando vuoi.
+            Piani chiari, senza sorprese. Scegli in base al numero di collaboratori che gestisci.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -99,11 +97,7 @@ export function PricingSection() {
                 <Button 
                   className="w-full" 
                   variant={plan.popular ? "default" : "outline"}
-                  onClick={() => {
-                    if (plan.cta !== "Contatta il Team") {
-                      setModalOpen(true);
-                    }
-                  }}
+                  onClick={() => setModalOpen(true)}
                 >
                   {plan.cta}
                 </Button>
