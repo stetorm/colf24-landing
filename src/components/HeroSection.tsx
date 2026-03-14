@@ -1,9 +1,11 @@
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { ArrowRight, Play, Euro, FileText, Calculator } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { EmailCaptureModal } from "./EmailCaptureModal";
 
 export function HeroSection() {
+  const [modalOpen, setModalOpen] = useState(false);
   const sceneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export function HeroSection() {
           contributi INPS, TFR, ferie e tredicesima per i tuoi lavoratori domestici.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <Button size="lg" className="w-full sm:w-auto">
+          <Button size="lg" className="w-full sm:w-auto" onClick={() => setModalOpen(true)}>
             Prova Gratuitamente
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -214,6 +216,7 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+      <EmailCaptureModal open={modalOpen} onOpenChange={setModalOpen} source="hero" />
     </section>
   );
 }

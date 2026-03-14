@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import { EmailCaptureModal } from "./EmailCaptureModal";
 
 export function Header() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -29,12 +33,14 @@ export function Header() {
           <Button variant="ghost" className="hidden md:inline-flex">
             Accedi
           </Button>
-          <Button>Inizia Gratis</Button>
+          <Button onClick={() => setModalOpen(true)}>Inizia Gratis</Button>
           <Button variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-4 w-4" />
           </Button>
         </div>
       </div>
+
+      <EmailCaptureModal open={modalOpen} onOpenChange={setModalOpen} source="header" />
     </header>
   );
 }

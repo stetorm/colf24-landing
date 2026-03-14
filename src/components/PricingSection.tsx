@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Check } from "lucide-react";
+import { EmailCaptureModal } from "./EmailCaptureModal";
 
 const plans = [
   {
@@ -54,6 +56,8 @@ const plans = [
 ];
 
 export function PricingSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <section id="pricing" className="py-20">
       <div className="container mx-auto px-4">
@@ -95,6 +99,11 @@ export function PricingSection() {
                 <Button 
                   className="w-full" 
                   variant={plan.popular ? "default" : "outline"}
+                  onClick={() => {
+                    if (plan.cta !== "Contatta il Team") {
+                      setModalOpen(true);
+                    }
+                  }}
                 >
                   {plan.cta}
                 </Button>
@@ -103,6 +112,12 @@ export function PricingSection() {
           ))}
         </div>
       </div>
+
+      <EmailCaptureModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        source="pricing"
+      />
     </section>
   );
 }
